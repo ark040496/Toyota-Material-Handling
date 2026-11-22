@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toyota Material Handling · B2B industrial UX · Rajesh Kumar A</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--ink:#141517;--mute:#5d636b;--line:#dcdee1;--wash:#f1f2f3;--red:#d63318;--green:#1d6f42}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.65 Barlow,system-ui,sans-serif}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:'Barlow Semi Condensed',Barlow,sans-serif;font-weight:600;line-height:1.1;letter-spacing:-.005em}
+h1{font-size:clamp(2.6rem,6.4vw,5.2rem);max-width:15ch}
+h2{font-size:clamp(1.9rem,3.6vw,2.8rem);max-width:22ch}
+h3{font-size:1.25rem}
+p{max-width:64ch;color:var(--mute)}
+.bar{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--red);transform:scaleX(0);transform-origin:left;z-index:50}
+header{display:flex;justify-content:space-between;align-items:center;max-width:1240px;margin:auto;padding:18px 28px;font-weight:500}
+header nav{display:flex;gap:26px;font-size:.95rem}
+header a{color:inherit;text-decoration:none;background:linear-gradient(var(--red),var(--red)) 0 100%/0 2px no-repeat;transition:background-size .25s}
+header a:hover{background-size:100% 2px}
+main,.w{max-width:1240px;margin:auto;padding:0 28px}
+.hero{padding:56px 0 40px;display:grid;gap:28px}
+.hero h1 span{display:block;overflow:hidden}
+.hero h1 span i{display:block;font-style:normal;transform:translateY(105%);animation:up .8s cubic-bezier(.2,.7,.2,1) forwards}
+.hero h1 span:nth-child(2) i{animation-delay:.12s}.hero h1 span:nth-child(3) i{animation-delay:.24s}
+@keyframes up{to{transform:none}}
+.hero .lede{font-size:1.2rem;color:var(--ink);opacity:0;animation:fade .8s .5s forwards}
+@keyframes fade{to{opacity:1}}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px 36px;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.95rem}
+.facts b{display:block;font-weight:600}.facts span{color:var(--mute)}
+.shot{border:1px solid var(--line);background:var(--wash);display:block;width:100%;padding:0;cursor:zoom-in;overflow:hidden}
+.shot img{width:100%;height:auto;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.shot:hover img{transform:scale(1.025)}
+figcaption{font-size:.88rem;color:var(--mute);margin-top:8px}
+figure{margin:0}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);margin-top:48px;border-top:4px solid var(--red)}
+.metrics div{padding:22px 22px 22px 0}
+.metrics div+div{padding-left:22px;border-left:1px solid var(--line)}
+.metrics strong{display:block;font:600 clamp(2rem,3.6vw,3rem)/1.05 'Barlow Semi Condensed',sans-serif;white-space:nowrap}
+.metrics b{display:block;margin:8px 0 4px}
+.metrics p{font-size:.92rem}
+section{padding-top:112px;scroll-margin-top:20px}
+.head{display:grid;gap:14px;margin-bottom:36px}
+.split{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:start}
+.tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border:1px solid var(--ink)}
+.tabs button{font:500 1.08rem/1.3 Barlow,sans-serif;color:var(--ink);background:var(--bg);border:0;border-right:1px solid var(--line);padding:20px 22px;text-align:left;cursor:pointer;position:relative;transition:background .25s,color .25s}
+.tabs button:last-child{border-right:0}
+.tabs button:hover{background:var(--wash)}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff}
+.tabs button::after{content:"";position:absolute;left:0;right:0;bottom:0;height:5px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.tabs button[aria-selected=true]::after{transform:scaleX(1)}
+.panel{border:1px solid var(--ink);border-top:0;padding:36px;animation:swap .4s ease}
+@keyframes swap{from{opacity:0;transform:translateY(8px)}}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.panel .lab{color:var(--mute);font-size:.95rem}
+.panel .big{font:600 2.8rem/1 'Barlow Semi Condensed',sans-serif;color:var(--red);margin:6px 0 12px}
+.panel p{margin-top:10px}
+.panel dl{display:grid;gap:20px}
+.panel dt{font-weight:600;margin-bottom:4px}.panel dd{color:var(--mute);padding-left:14px;border-left:3px solid var(--red)}
+.panel dd.fix{color:var(--ink);border-left-color:var(--green)}
+.hero-top{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero-copy{display:grid;gap:24px}
+.hero-copy h1{max-width:none;font-size:clamp(2.4rem,5vw,4.4rem)}
+.fl{width:100%;height:auto}
+.fl .lift{animation:lift 1.8s .7s cubic-bezier(.3,.7,.2,1) both}
+@keyframes lift{to{transform:translateY(-96px)}}
+.band{background:var(--wash);padding:40px;margin:8px 0 44px}
+.band h3{margin-bottom:4px}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;position:relative;margin-top:30px}
+.flow::before,.flow::after{content:"";position:absolute;left:0;right:0;top:11px;height:3px;background:var(--line)}
+.flow::after{background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform 1.8s cubic-bezier(.4,0,.2,1) .2s}
+.rv.in .flow::after{transform:scaleX(1)}
+.step{position:relative;padding-top:38px;opacity:0;transform:translateY(12px);transition:opacity .6s,transform .6s}
+.rv.in .step{opacity:1;transform:none}
+.step:nth-child(1){transition-delay:.2s}.step:nth-child(2){transition-delay:.55s}.step:nth-child(3){transition-delay:.9s}.step:nth-child(4){transition-delay:1.25s}.step:nth-child(5){transition-delay:1.6s}
+.dot{position:absolute;top:0;left:0;width:25px;height:25px;border-radius:50%;background:#fff;border:3px solid var(--ink);z-index:1}
+.step b{display:block;font:600 1.15rem/1.2 'Barlow Semi Condensed',sans-serif}
+.step p{font-size:.92rem;margin-top:6px}
+.mix{margin-top:44px}
+.stack{display:flex;height:44px;margin-top:10px;background:var(--line)}
+.stack span{display:block;width:0;transition:width 1.4s cubic-bezier(.2,.7,.2,1) .6s}
+.rv.in .stack span{width:var(--w)}
+.leg{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:12px;font-size:.92rem;color:var(--mute)}
+.leg i{display:inline-block;width:12px;height:12px;margin-right:8px;vertical-align:-1px}
+.ctl{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.ctl button{font:500 .95rem Barlow,sans-serif;padding:8px 16px;border:1px solid var(--line);background:var(--bg);cursor:pointer;border-radius:3px;transition:background .2s,color .2s,border-color .2s}
+.ctl button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.fleet{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.unit{text-align:left;padding:16px;border:1px solid var(--line);background:var(--bg);cursor:pointer;border-radius:3px;font:inherit;color:inherit;transition:border-color .2s,transform .2s;animation:swap .4s ease}
+.unit:hover{transform:translateY(-3px)}
+.unit[aria-pressed=true]{border:2px solid var(--red);padding:15px}
+.unit b{display:block;font-size:.88rem;color:var(--red)}
+.unit strong{display:block;font-family:'Barlow Semi Condensed',sans-serif;font-size:1.2rem;margin:2px 0 6px}
+.unit small{color:var(--mute);font-size:.9rem;display:block}
+.tw{overflow-x:auto;margin-top:26px}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{text-align:left;padding:12px 16px 12px 0;border-bottom:1px solid var(--line);vertical-align:top;font-size:.96rem}
+thead th{border-bottom:2px solid var(--ink);font-family:'Barlow Semi Condensed',sans-serif;font-size:1.1rem}
+tbody th{color:var(--mute);font-weight:500;width:150px}
+td.best{font-weight:600;color:var(--green)}
+td.best::after{content:" · best";font-weight:400;font-size:.85rem}
+.empty{padding:28px 0;color:var(--mute)}
+.act{display:flex;align-items:center;gap:16px;margin-top:20px;flex-wrap:wrap}
+.btn{display:inline-block;padding:11px 20px;background:var(--red);color:#fff;border:0;border-radius:3px;font:500 .98rem Barlow,sans-serif;text-decoration:none;cursor:pointer;transition:background .2s}
+.btn:hover{background:#b82a12}
+.btn:disabled{background:var(--line);color:var(--mute);cursor:not-allowed}
+.phones{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:32px}
+.phones .shot{background:var(--wash)}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.sw{border:1px solid var(--line);background:var(--bg);padding:0;text-align:left;cursor:pointer;font:inherit;color:inherit;border-radius:3px;overflow:hidden;transition:transform .2s}
+.sw:hover{transform:translateY(-3px)}
+.sw i{display:block;height:84px}
+.sw div{padding:12px 14px;font-size:.92rem}
+.sw b{display:block;font-weight:600}.sw span{color:var(--mute)}
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+.skills h3{padding-bottom:10px;border-bottom:2px solid var(--ink);margin-bottom:12px}
+.skills ul{padding-left:18px;color:var(--mute)}.skills li{margin:6px 0}
+.cta{margin-top:112px;padding:44px 0 56px;border-top:4px solid var(--red)}
+.cta p{margin:12px 0 22px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:3px;font-size:.92rem;opacity:0;pointer-events:none;transition:.3s;z-index:60}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+dialog{border:0;background:transparent;max-width:94vw;padding:0}
+dialog::backdrop{background:rgba(10,12,14,.88)}
+dialog img{max-height:92vh;width:auto;margin:auto;animation:swap .3s}
+@media(max-width:900px){.split,.skills,.hero-top,.pgrid{grid-template-columns:1fr}.panel{padding:24px}.band{padding:24px}.flow{grid-template-columns:1fr;gap:22px}.flow::before,.flow::after{display:none}.step{padding:0 0 0 40px}.dot{top:2px}.metrics{grid-template-columns:1fr 1fr}.metrics div:nth-child(3){padding-left:0;border-left:0}header nav{display:none}.phones{gap:12px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.step{opacity:1;transform:none}.stack span{width:var(--w)}.flow::after{transform:none}.hero h1 span i{transform:none}.hero .lede,.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<header><strong>Rajesh Kumar A</strong>
+<nav><a href="#audit">Audit</a><a href="#compare">Comparator</a><a href="#mobile">Mobile</a><a href="#system">Design system</a>
+<a href="https://www.figma.com/deck/1FDmGoTbxqdXD0UkQECta9/Toyota-Forklift----UX-Case-Study?node-id=1-660&t=2yOWUfzWhjlRxh9p-1" target="_blank" rel="noopener">Figma deck</a></nav></header>
+
+<main>
+<div class="hero">
+  <div class="hero-top"><div class="hero-copy"><p style="font-size:.98rem">Toyota Material Handling · B2B industrial UX</p>
+  <h1><span><i>Re-engineering</i></span><span><i>forklift discovery</i></span><span><i>for fleet buyers</i></span></h1>
+  <p class="lede">I turned a hard-to-search equipment catalog into an accessible digital showroom with a side-by-side spec comparator and a mobile resource for warehouse directors, fleet buyers and dealership teams.</p></div><svg class="fl" viewBox="0 0 560 380" role="img" aria-label="Illustration of a forklift raising a pallet">
+<line x1="10" y1="352" x2="550" y2="352" stroke="#141517" stroke-width="3"/>
+<rect x="148" y="60" width="14" height="292" fill="#141517"/><rect x="168" y="60" width="8" height="292" fill="#3b3f45"/>
+<rect x="182" y="246" width="296" height="84" rx="16" fill="#d63318"/>
+<path d="M392 246h70a16 16 0 0 1 16 16v68H392z" fill="#b82a12"/>
+<rect x="262" y="214" width="56" height="34" rx="6" fill="#141517"/><rect x="318" y="194" width="10" height="54" rx="4" fill="#141517"/>
+<line x1="244" y1="246" x2="256" y2="206" stroke="#141517" stroke-width="6"/><ellipse cx="258" cy="204" rx="17" ry="4" fill="#141517"/>
+<rect x="200" y="120" width="7" height="128" fill="#141517"/><rect x="346" y="120" width="7" height="128" fill="#141517"/><rect x="192" y="110" width="170" height="11" rx="3" fill="#141517"/>
+<circle cx="232" cy="316" r="36" fill="#141517"/><circle cx="232" cy="316" r="15" fill="#e9ebee"/>
+<circle cx="424" cy="324" r="28" fill="#141517"/><circle cx="424" cy="324" r="12" fill="#e9ebee"/>
+<g class="lift"><rect x="126" y="268" width="14" height="78" rx="2" fill="#3b3f45"/><rect x="20" y="336" width="116" height="9" fill="#141517"/><rect x="32" y="318" width="98" height="18" fill="#8b9097"/><rect x="40" y="262" width="84" height="56" fill="#e9ebee" stroke="#141517" stroke-width="3"/><rect x="40" y="282" width="84" height="10" fill="#d63318"/></g>
+</svg></div>
+  <div class="facts">
+    <div><b>Role</b><span>Lead UX designer and researcher (solo)</span></div>
+    <div><b>Sector</b><span>Heavy machinery, intralogistics, dealer network</span></div>
+    <div><b>Scope</b><span>UX audit, mixed-methods research, IA, comparison tool, design system</span></div>
+  </div>
+  <figure><button class="shot" data-zoom><img src="https://rajesh04.unaux.com/Images/home-FL.png" alt="Redesigned Toyota forklift homepage" width="1600" height="900"></button></figure>
+</div>
+
+<div class="metrics" aria-label="Key results">
+  <div><strong><span data-count="73">73</span>% → <span data-count="14">14</span>%</strong><b>Selection friction</b><p>4.2× faster equipment qualification through application and load-capacity filters.</p></div>
+  <div><strong><span data-count="4">4</span>+ → <span data-count="1">1</span> click</strong><b>Technical manual access</b><p>Inline spec sheets, load-centre charts and direct dealer quote routing.</p></div>
+  <div><strong>−<span data-count="46">46</span>%</strong><b>Mobile bounce</b><p>From 68% down to 22% on field tablets and phones.</p></div>
+  <div><strong>+<span data-count="40">40</span>%</strong><b>UI build velocity</b><p>Tokenised Figma-to-code components that meet WCAG 2.2 AA.</p></div>
+</div>
+
+<section id="audit" class="rv">
+  <div class="split">
+    <div class="head"><h2>Buyers had to hunt through hierarchies built around Toyota, not around them</h2>
+    <p>Toyota leads North America in lift trucks, order pickers and automated guided vehicles. Our UX audit and analytics review showed a catalog organised by internal taxonomy, not by how warehouse directors and procurement teams specify equipment.</p>
+    <p>When buyers couldn’t verify aisle width, powertrain or side-by-side capacity, 61% left to compare specs on third-party sites.</p></div>
+    <figure><button class="shot" data-zoom><img loading="lazy" src="https://rajesh04.unaux.com/Images/T-FL-old.png" alt="Legacy Toyota forklift website"></button><figcaption>Legacy interface audit capture</figcaption></figure>
+  </div>
+  <div style="margin-top:44px">
+    <div class="tabs" role="tablist" id="auditTabs"></div>
+    <div id="auditPanel" class="panel" role="tabpanel" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="research" class="rv">
+  <div class="head"><h2>Grounding discovery in warehouse and dealership reality</h2>
+  <p>I ran quantitative funnel surveys and moderated contextual interviews with logistics managers, fleet operators and regional dealership sales engineers. Select a segment below to see what each needed.</p></div>
+  <div class="band"><h3>How the research ran</h3><p>From drop-off data to a validated prototype, each stage fed the next.</p>
+  <div class="flow">
+    <div class="step"><i class="dot"></i><b>Funnel analytics and survey</b><p>Showed where buyers left: 61% went elsewhere to compare specs.</p></div>
+    <div class="step"><i class="dot"></i><b>Contextual interviews</b><p>Logistics managers, fleet operators and dealership sales engineers.</p></div>
+    <div class="step"><i class="dot"></i><b>Segment synthesis</b><p>Three user segments with distinct goals and frictions.</p></div>
+    <div class="step"><i class="dot"></i><b>IA and mega-menu</b><p>Reorganised by powertrain, load capacity and warehouse environment.</p></div>
+    <div class="step"><i class="dot"></i><b>Prototype and testing</b><p>Task-based usability testing of the comparator and mobile screens.</p></div>
+  </div>
+  <div class="mix"><b>Who we designed for: share of web traffic</b>
+    <div class="stack" role="img" aria-label="Traffic share: 54% warehouse and fleet directors, 28% dealership, 18% field operators"><span style="--w:54%;background:var(--red)"></span><span style="--w:28%;background:var(--ink)"></span><span style="--w:18%;background:#8b9097"></span></div>
+    <div class="leg"><span><i style="background:var(--red)"></i>Warehouse and fleet directors 54%</span><span><i style="background:var(--ink)"></i>Dealership sales and service 28%</span><span><i style="background:#8b9097"></i>Field operators and techs 18%</span></div></div>
+</div>
+  <div class="tabs" role="tablist" id="segTabs"></div>
+  <div id="segPanel" class="panel" role="tabpanel" aria-live="polite"></div>
+  <figure style="margin-top:44px"><button class="shot" data-zoom><img loading="lazy" src="https://rajesh04.unaux.com/Images/Toy-render.png" alt="Research insights and equipment visualisation"></button><figcaption>Research insights and hardware inspection architecture</figcaption></figure>
+</section>
+
+<section id="compare" class="rv">
+  <div class="head"><h2>Side-by-side specifications, on the same page</h2>
+  <p>61% of buyers had left to compare models elsewhere, so I restructured the mega-menu by powertrain, load capacity and warehouse environment and added an inline comparator. Try it: pick up to three models.</p></div>
+  <div class="ctl" id="filters" role="group" aria-label="Filter fleet">
+    <button data-f="ALL" aria-pressed="true">All fleet</button><button data-f="ELECTRIC" aria-pressed="false">Electric</button><button data-f="IC" aria-pressed="false">Internal combustion</button>
+  </div>
+  <div class="fleet" id="fleet"></div>
+  <div class="tw"><table id="matrix"></table></div>
+  <div class="act"><button class="btn" id="spec">Request spec sheet</button><span style="color:var(--mute)" id="count"></span></div>
+</section>
+
+<section id="product" class="rv">
+  <div class="head"><h2>Desktop precision for procurement, thumb-friendly clarity for the floor</h2>
+  <p>42% of traffic comes from mobile devices on warehouse floors and dealership lots. One responsive system pairs 360° equipment inspection on desktop with fast, high-contrast mobile spec sheets.</p></div>
+  <figure><button class="shot" data-zoom><img loading="lazy" src="https://rajesh04.unaux.com/Images/Toy-Product-solution.png" alt="Redesigned equipment detail page"></button><figcaption>Equipment detail: 360° viewport, sticky spec ledger and dealer quote flow</figcaption></figure>
+</section>
+
+<section id="mobile" class="rv">
+  <div class="head"><h2>Mobile bounce rate: 68% to 22%</h2><p>Select a screen to enlarge it.</p></div>
+  <div class="phones">
+    <figure><button class="shot" data-zoom><img loading="lazy" src="https://rajesh04.unaux.com/Images/mob-1.png" alt="Mobile product listing"></button><figcaption><b>Catalog listing.</b> Quick-scan load capacities and powertrain tags.</figcaption></figure>
+    <figure><button class="shot" data-zoom><img loading="lazy" src="https://rajesh04.unaux.com/Images/mob-2.png" alt="Mobile navigation drawer"></button><figcaption><b>Navigation drawer.</b> Two taps to equipment classes and dealers.</figcaption></figure>
+    <figure><button class="shot" data-zoom><img loading="lazy" src="https://rajesh04.unaux.com/Images/mob-3.png" alt="Mobile spec sheet and dealer action"></button><figcaption><b>Spec and dealer action.</b> One-tap spec PDF and a sticky quote button.</figcaption></figure>
+  </div>
+</section>
+
+<section id="system" class="rv">
+  <div class="head"><h2>A tokenised industrial UI kit</h2>
+  <p>A Figma Variables and component library built for WCAG 2.2 AA contrast under bright warehouse lighting and on outdoor loading docks. Select a swatch to copy its value.</p></div>
+  <div class="swatches">
+    <button class="sw" data-hex="#D63318"><i style="background:#d63318"></i><div><b>--tmh-safety-red</b><span>Primary action and active telemetry · #D63318</span></div></button>
+    <button class="sw" data-hex="#141517"><i style="background:#141517"></i><div><b>--tmh-chassis-ink</b><span>17.8:1 contrast, WCAG AAA · #141517</span></div></button>
+    <button class="sw" data-hex="#F4F2EC"><i style="background:#f4f2ec"></i><div><b>--tmh-surface-draft</b><span>Low-glare floor surface · #F4F2EC</span></div></button>
+    <button class="sw" data-hex="#1D6F42"><i style="background:#1d6f42"></i><div><b>--tmh-spec-verified</b><span>OSHA and load-check pass · #1D6F42</span></div></button>
+  </div>
+</section>
+
+<section id="skills" class="rv">
+  <div class="head"><h2>Capabilities applied</h2></div>
+  <div class="skills">
+    <div><h3>B2B industrial and configurator UX</h3><ul><li>Configure, price, quote and dealer portals</li><li>Multi-attribute comparison matrices</li><li>3D product visualisation and spatial inspection</li><li>Fleet telematics and HMI readiness</li></ul></div>
+    <div><h3>Current product design stack</h3><ul><li>AI-assisted spec and fleet matching</li><li>Multi-brand Figma variables and token pipelines</li><li>WCAG 2.2 AA for high-glare field use</li><li>Design-to-code governance</li></ul></div>
+    <div><h3>Research and validation</h3><ul><li>End-to-end UX audit</li><li>Funnel and drop-off analysis</li><li>Moderated contextual inquiry</li><li>Task-based usability testing</li><li>IA and mega-menu taxonomy</li></ul></div>
+  </div>
+</section>
+
+<div class="cta rv">
+  <h2>See the full project in Figma</h2>
+  <p>The original presentation covers the audit, research artefacts and final screens in more detail.</p>
+  <a class="btn" href="https://www.figma.com/deck/1FDmGoTbxqdXD0UkQECta9/Toyota-Forklift----UX-Case-Study?node-id=1-660&t=2yOWUfzWhjlRxh9p-1" target="_blank" rel="noopener">Open Figma presentation</a>
+</div>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+<dialog id="dlg"><img alt=""></dialog>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('on'),2200)};
+// scroll progress
+addEventListener('scroll',()=>{const h=document.documentElement;$('#bar').style.transform=`scaleX(${scrollY/(h.scrollHeight-innerHeight)})`},{passive:true});
+// reveal + counters
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const count=el=>{const to=+el.dataset.count;if(reduce)return;const t0=performance.now();(function f(n){const p=Math.min((n-t0)/1100,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+$$('.rv').forEach(e=>io.observe(e));
+const mo=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){$$('[data-count]').forEach(count);mo.disconnect()}}),{threshold:.4});
+mo.observe($('.metrics'));
+// tabs
+function tabs(host,panel,items,render){
+  const h=$(host);h.innerHTML=items.map((x,i)=>`<button role="tab" aria-selected="${i==0}" data-i="${i}">${x.tab}</button>`).join('');
+  const show=i=>{$$(host+' button').forEach(b=>b.setAttribute('aria-selected',b.dataset.i==i));const p=$(panel);p.innerHTML=render(items[i]);p.style.animation='none';p.offsetHeight;p.style.animation=''};
+  h.addEventListener('click',e=>{const b=e.target.closest('button');if(b)show(b.dataset.i)});show(0);
+}
+tabs('#auditTabs','#auditPanel',[
+ {tab:'Hidden manuals',stat:'4+ clicks deep',t:'Technical specs and operator manuals sat four levels down',d:'Mast height, turning radius, load centre and OSHA maintenance checklists were locked in unindexed PDFs beneath nested corporate menus.',f:'Structured spec ledgers and one-click PDF and CAD downloads now sit above the fold on every model page.'},
+ {tab:'No comparison',stat:'61% left for competitors',t:'No way to compare forklift models side by side',d:'Fleet managers weighing a 3,000 lb electric reach truck against a 5,000 lb cushion model opened multiple tabs and retyped specs into spreadsheets.',f:'An inline three-model matrix highlights load capacity, turn radius and powertrain cost of ownership.'},
+ {tab:'Mobile friction',stat:'68% mobile bounce',t:'Broken mobile layouts on warehouse floors and dealer lots',d:'42% of traffic arrived on mobile during walkthroughs, but fixed-width tables and tiny tap targets drove a 68% bounce rate.',f:'A mobile-first architecture with thumb-reachable filter drawers and instant dealer quote triggers.'},
+ {tab:'Accessibility gaps',stat:'WCAG non-compliant',t:'Low contrast and unstructured keyboard navigation',d:'Grey-on-grey spec text failed contrast thresholds in high-glare lighting and lacked ARIA landmarks.',f:'A WCAG 2.2 AA token set with 17.8:1 chassis ink contrast and full keyboard operation.'}],
+ x=>`<div class="pgrid"><div><div class="lab">Failure mode</div><div class="big">${x.stat}</div><h3>${x.t}</h3></div><dl><div><dt>What we found</dt><dd>${x.d}</dd></div><div><dt>What we changed</dt><dd class="fix">${x.f}</dd></div></dl></div>`);
+tabs('#segTabs','#segPanel',[
+ {tab:'Warehouse and fleet directors',s:'Primary buyers · 54% of web traffic',t:'Warehouse operations and fleet procurement managers',d:'Weigh total cost of ownership, electric versus LP or diesel emissions, cold-storage readiness and narrow-aisle manoeuvrability across multi-unit purchases.',fr:'73% couldn’t narrow models by lift capacity and aisle width without calling a rep.',so:'Side-by-side three-model matrix and application-based mega-menu filtering.'},
+ {tab:'Dealership sales and service',s:'Channel partners · 28% of web traffic',t:'Regional dealership sales and service engineers',d:'Use the catalog live with customers to configure attachments, verify mast heights and pull OEM spec sheets.',fr:'Four-plus clicks to reach a spec sheet slowed live customer conversations.',so:'One-click OEM spec sheet PDF and a pre-qualified dealer quote handoff.'},
+ {tab:'Field operators and techs',s:'Field operations · 18% of web traffic',t:'Floor supervisors, operators and maintenance technicians',d:'Open equipment guides on phones and rugged tablets inside distribution centres to check load-centre limits and service intervals.',fr:'Non-responsive tables and buried manuals produced a 68% mobile bounce rate.',so:'High-contrast mobile UI with instant manual access; bounce fell to 22%.'}],
+ x=>`<div class="pgrid"><div><div class="lab">${x.s}</div><h3 style="margin-top:6px;font-size:1.6rem">${x.t}</h3><p>${x.d}</p></div><dl><div><dt>Key friction</dt><dd>${x.fr}</dd></div><div><dt>What we delivered</dt><dd class="fix">${x.so}</dd></div></dl></div>`);
+// comparator
+const F=[
+ {c:'8FGCU25',n:'Core IC cushion forklift',k:'IC',p:'Internal combustion (LP / gas)',cap:5000,capT:'5,000 lbs @ 24" LC',h:189,hT:'189 in (3-stage mast)',r:78.9,rT:'78.9 in (compact aisle)',e:'Indoor warehouse and manufacturing',s:1},
+ {c:'8FBE15U',n:'3-wheel electric forklift',k:'ELECTRIC',p:'48V / 80V AC electric (zero emission)',cap:3000,capT:'3,000 lbs @ 24" LC',h:198,hT:'198 in (high reach)',r:57.3,rT:'57.3 in (ultra-tight turning)',e:'Cold storage, food and high-density racks',s:1},
+ {c:'8FGU30',n:'Core IC pneumatic forklift',k:'IC',p:'Internal combustion (diesel / LP)',cap:6000,capT:'6,000 lbs @ 24" LC',h:187,hT:'187 in (heavy-duty mast)',r:95.7,rT:'95.7 in (all-terrain yard)',e:'Outdoor lumber, freight yard and dock',s:1},
+ {c:'9BNCU20',n:'Stand-up rider electric',k:'ELECTRIC',p:'36V / 48V AC electric',cap:4000,capT:'4,000 lbs @ 24" LC',h:240,hT:'240 in (narrow aisle)',r:64.2,rT:'64.2 in (dock to stock)',e:'Cross-docking and retail distribution',s:0}];
+let flt='ALL';
+function draw(){
+  $('#fleet').innerHTML=F.filter(f=>flt=='ALL'||f.k==flt).map(f=>`<button class="unit" aria-pressed="${!!f.s}" data-c="${f.c}"><b>${f.c}</b><strong>${f.n}</strong><small>${f.capT}</small><small>${f.p}</small></button>`).join('');
+  const S=F.filter(f=>f.s),m=$('#matrix');$('#count').textContent=`${S.length} of 3 models selected`;
+  if(!S.length){m.innerHTML='<tr><td class="empty">Select a model above to start comparing.</td></tr>';return}
+  const best=(k,fn)=>S.length>1?fn(...S.map(x=>x[k])):null;
+  const rows=[['Powertrain','p'],['Load capacity','capT','cap',Math.max],['Max lift height','hT','h',Math.max],['Turn radius','rT','r',Math.min],['Best environment','e']];
+  m.innerHTML=`<thead><tr><th></th>${S.map(f=>`<th>${f.c}<br><span style="font-weight:400;font-size:.9rem;color:var(--mute)">${f.n}</span></th>`).join('')}</tr></thead><tbody>${rows.map(r=>{const b=r[2]?best(r[2],r[3]):null;return`<tr><th>${r[0]}</th>${S.map(f=>`<td class="${b!==null&&f[r[2]]===b?'best':''}">${f[r[1]]}</td>`).join('')}</tr>`}).join('')}</tbody>`;
+}
+$('#fleet').addEventListener('click',e=>{const b=e.target.closest('.unit');if(!b)return;const f=F.find(x=>x.c==b.dataset.c);
+  if(!f.s&&F.filter(x=>x.s).length>=3){toast('Compare up to three models. Deselect one first.');return}f.s=f.s?0:1;draw()});
+$('#filters').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;flt=b.dataset.f;$$('#filters button').forEach(x=>x.setAttribute('aria-pressed',x==b));draw()});
+$('#spec').addEventListener('click',()=>toast(F.some(f=>f.s)?'Spec sheet ready for the selected models':'Select at least one model first'));
+draw();
+// copy swatches
+$$('.sw').forEach(b=>b.addEventListener('click',()=>{(navigator.clipboard?navigator.clipboard.writeText(b.dataset.hex):Promise.reject()).then(()=>toast('Copied '+b.dataset.hex),()=>toast(b.dataset.hex))}));
+// lightbox
+const d=$('#dlg'),di=d.querySelector('img');
+$$('[data-zoom]').forEach(b=>b.addEventListener('click',()=>{const i=b.querySelector('img');di.src=i.src;di.alt=i.alt;d.showModal()}));
+d.addEventListener('click',()=>d.close());
+</script>
+</body>
+</html>
